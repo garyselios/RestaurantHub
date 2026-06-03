@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const setupSwagger = require('./swagger'); // ← Importar Swagger
+const setupSwagger = require('./swagger'); 
 
 const restaurantRoutes = require('./routes/restaurants');
 const reviewRoutes = require('./routes/reviews');
@@ -10,26 +10,26 @@ const reviewRoutes = require('./routes/reviews');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Conectar a MongoDB
+// Connect to MongoDB
 connectDB();
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Rutas
+// Routes
 app.use('/restaurants', restaurantRoutes);
 app.use('/reviews', reviewRoutes);
 
-// Ruta de prueba
+// Test route
 app.get('/', (req, res) => {
   res.send('RestaurantHub API is running. Use /restaurants or /reviews.');
 });
 
-// Configurar Swagger (después de las rutas)
+// Setup Swagger (after routes)
 setupSwagger(app);
 
-// Iniciar servidor
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Restaurants: http://localhost:${PORT}/restaurants`);

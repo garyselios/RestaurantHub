@@ -19,7 +19,7 @@ const getOne = async (req, res) => {
   } catch (err) { handleError(res, err); }
 };
 
-// POST (crear)
+// POST 
 const create = async (req, res) => {
   try {
     const { restaurantId, userId, rating, comment } = req.body;
@@ -35,7 +35,7 @@ const create = async (req, res) => {
   } catch (err) { handleError(res, err); }
 };
 
-// PUT (actualizar)
+// PUT
 const update = async (req, res) => {
   try {
     const { rating, comment } = req.body;

@@ -1,6 +1,6 @@
 const Restaurant = require('../models/Restaurant');
 
-// Helper para errores
+// Error helper
 const errorRes = (res, err, code = 500) => res.status(code).json({ message: err.message || err });
 
 // GET all
