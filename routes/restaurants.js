@@ -1,3 +1,73 @@
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     Restaurant:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         name:
+ *           type: string
+ *         address:
+ *           type: string
+ *         cuisine:
+ *           type: string
+ *           enum: [Italian, Mexican, Japanese, Chinese, Indian, American, Other]
+ *         phone:
+ *           type: string
+ *         rating:
+ *           type: number
+ *         imageUrl:
+ *           type: string
+ *         location:
+ *           type: object
+ *           properties:
+ *             type:
+ *               type: string
+ *             coordinates:
+ *               type: array
+ *               items:
+ *                 type: number
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *     RestaurantInput:
+ *       type: object
+ *       required:
+ *         - name
+ *         - address
+ *         - cuisine
+ *       properties:
+ *         name:
+ *           type: string
+ *           example: "..."
+ *         address:
+ *           type: string
+ *           example: "..."
+ *         cuisine:
+ *           type: string
+ *           enum: [Italian, Mexican, Japanese, Chinese, Indian, American, Other]
+ *           example: "..."
+ *         phone:
+ *           type: string
+ *           pattern: '^\d{10,15}$'
+ *           example: "...."
+ *         rating:
+ *           type: number
+ *           minimum: 0
+ *           maximum: 5
+ *           example: ...
+ *     Error:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ */
+
 const router = require('express').Router();
 const ctrl = require('../controllers/restaurantController');
 
@@ -18,10 +88,6 @@ const ctrl = require('../controllers/restaurantController');
  *                 $ref: '#/components/schemas/Restaurant'
  *       500:
  *         description: Server error
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  */
 router.get('/', ctrl.getAll);
 
@@ -47,10 +113,6 @@ router.get('/', ctrl.getAll);
  *               $ref: '#/components/schemas/Restaurant'
  *       404:
  *         description: Restaurant not found
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *       500:
  *         description: Server error
  */
@@ -67,20 +129,21 @@ router.get('/:id', ctrl.getOne);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Restaurant'
+ *             $ref: '#/components/schemas/RestaurantInput'
  *     responses:
  *       201:
  *         description: Restaurant created successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Restaurant'
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 message:
+ *                   type: string
  *       400:
  *         description: Invalid input
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Error'
  *       500:
  *         description: Server error
  */
@@ -104,14 +167,17 @@ router.post('/', ctrl.create);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Restaurant'
+ *             $ref: '#/components/schemas/RestaurantInput'
  *     responses:
  *       200:
  *         description: Restaurant updated
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Restaurant'
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
  *       404:
  *         description: Restaurant not found
  *       400:

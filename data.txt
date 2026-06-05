@@ -1,0 +1,19 @@
+Restaurants
+
+{
+  "name": "Best Food",
+  "address": "Av. Carrefur 659",
+  "cuisine": "Mexican",
+  "phone": "5555559876",
+  "rating": 4.5
+}
+
+
+Reviews
+
+{
+  "restaurantId": "idrestaurant",
+  "userId": "Jhon Clark",
+  "rating": 5,
+  "comment": "Excellent place, very good service."
+}
