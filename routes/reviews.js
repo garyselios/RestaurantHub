@@ -29,18 +29,18 @@
  *       properties:
  *         restaurantId:
  *           type: string
- *           example: "60d21b4667d0d8992e610c85"
+ *           example: "..."
  *         userId:
  *           type: string
- *           example: "john_doe"
+ *           example: "..."
  *         rating:
  *           type: number
  *           minimum: 1
  *           maximum: 5
- *           example: 5
+ *           example: ...
  *         comment:
  *           type: string
- *           example: "Excellent place"
+ *           example: "..."
  *     Error:
  *       type: object
  *       properties:
