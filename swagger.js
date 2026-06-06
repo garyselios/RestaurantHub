@@ -19,7 +19,7 @@ const options = {
     url: 'https://restauranthub-8ukj.onrender.com/',  
     description: 'Production server (Render)',
   },
-],,
+],
     components: {
       schemas: {
         Restaurant: {
