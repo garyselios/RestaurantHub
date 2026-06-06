@@ -11,11 +11,15 @@ const options = {
       description: 'API for managing restaurants and reviews',
     },
     servers: [
-      {
-        url: 'http://localhost:8080',
-        description: 'Development server',
-      },
-    ],
+  {
+    url: 'http://localhost:8080',
+    description: 'Development server (local)',
+  },
+  {
+    url: 'https://restauranthub-8ukj.onrender.com/',  
+    description: 'Production server (Render)',
+  },
+],,
     components: {
       schemas: {
         Restaurant: {
