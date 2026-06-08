@@ -13,7 +13,7 @@ Reviews
 
 {
   "restaurantId": "idrestaurant",
-  "userId": "Jhon Clark",
+  "userId": "Gary Selios",
   "rating": 5,
   "comment": "Excellent place, very good service."
 }
