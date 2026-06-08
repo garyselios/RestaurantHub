@@ -1,4 +1,3 @@
-// swagger.js
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -8,19 +7,26 @@ const options = {
     info: {
       title: 'TravelTickets API',
       version: '1.0.0',
-      description: 'API for managing restaurants and reviews',
+      description: 'API for managing restaurants, reviews, users, and cuisines',
     },
     servers: [
-  {
-    url: 'http://localhost:8080',
-    description: 'Development server (local)',
-  },
-  {
-    url: 'https://restauranthub-8ukj.onrender.com/',  
-    description: 'Production server (Render)',
-  },
-],
+      {
+        url: 'http://localhost:8080',
+        description: 'Development server (local)',
+      },
+      {
+        url: 'https://restauranthub-8ukj.onrender.com',   
+        description: 'Production server (Render)',
+      },
+    ],
     components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
       schemas: {
         Restaurant: {
           type: 'object',
@@ -58,6 +64,27 @@ const options = {
             updatedAt: { type: 'string', format: 'date-time' },
           },
         },
+        User: {
+          type: 'object',
+          properties: {
+            _id: { type: 'string' },
+            name: { type: 'string' },
+            email: { type: 'string' },
+            role: { type: 'string', enum: ['user', 'admin'] },
+            createdAt: { type: 'string', format: 'date-time' },
+            updatedAt: { type: 'string', format: 'date-time' },
+          },
+        },
+        Cuisine: {
+          type: 'object',
+          properties: {
+            _id: { type: 'string' },
+            name: { type: 'string' },
+            description: { type: 'string' },
+            createdAt: { type: 'string', format: 'date-time' },
+            updatedAt: { type: 'string', format: 'date-time' },
+          },
+        },
         Error: {
           type: 'object',
           properties: {
@@ -73,7 +100,7 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 const setupSwagger = (app) => {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
   console.log('📚 Swagger docs available at /api-docs');
 };
 

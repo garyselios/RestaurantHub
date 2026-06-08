@@ -17,3 +17,39 @@ Reviews
   "rating": 5,
   "comment": "Excellent place, very good service."
 }
+
+Cuisines
+
+{
+  "name": "Italian",
+  "description": "Traditional Italian cuisine, including pasta, pizza, and risotto."
+}
+
+Users register
+
+{
+  "name": "Jorge Salas",
+  "email": "jorgesalas@gmail.com",
+  "password": "jorgesalas123"
+}
+
+
+User Login
+
+{
+  "email": "jorgesalas@gmail.com",
+  "password": "jorgesalas123"
+}
+
+
+
+db.users.updateOne(
+  { email: "jorgesalas@gmail.com" },
+  { $set: { role: "admin" } }
+)
+
+RUN: node update-role.js
+
+
+
+https://restauranthub-8ukj.onrender.com/auth/logout
