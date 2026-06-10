@@ -6,7 +6,7 @@ const updateRole = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
     const result = await User.updateOne(
-      { email: "jorgesalas@gmail.com" },
+      { email: "garypesquisa@gmail.com" },
       { role: "admin" }
     );
     console.log('Usuario actualizado:', result);
