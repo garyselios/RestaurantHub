@@ -48,3 +48,7 @@ RUN: node update-role.js
 https://restauranthub-8ukj.onrender.com/api-docs
 https://restauranthub-8ukj.onrender.com/auth/google
 https://restauranthub-8ukj.onrender.com/auth/logout
+
+
+jest supertest
+npm test

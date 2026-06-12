@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js"
   },
   "repository": {
@@ -21,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/garyselios/RestaurantHub/issues"
   },
-  "homepage": "https://github.com/garyselios/RestaurantHub#readme",
+  "homepage": "https://github.com//RestaurantHub#readme",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
@@ -35,5 +32,9 @@
     "passport-google-oauth20": "^2.0.0",
     "swagger-jsdoc": "^6.3.0",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "supertest": "^7.0.0"
   }
 }
