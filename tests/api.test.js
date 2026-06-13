@@ -1,6 +1,6 @@
-// __tests__/api.test.js
+// tests/api.test.js
 const request = require('supertest');
-const app = require('../app');
+const app = require('../server');
 const mongoose = require('mongoose');
 
 // ==================== RESTAURANTS ====================
@@ -10,6 +10,7 @@ describe('GET /restaurants', () => {
       .get('/restaurants')
       .expect('Content-Type', /json/)
       .expect(200);
+
     expect(Array.isArray(res.body)).toBe(true);
   });
 });
@@ -17,12 +18,13 @@ describe('GET /restaurants', () => {
 describe('GET /restaurants/:id', () => {
   it('should return 404 for a non-existent restaurant ID', async () => {
     const fakeId = '507f1f77bcf86cd799439011';
+
     await request(app)
       .get(`/restaurants/${fakeId}`)
       .expect(404);
   });
 
-  it('should return 500 for an invalid ID format (e.g., "123")', async () => {
+  it('should return 500 for an invalid ID format', async () => {
     await request(app)
       .get('/restaurants/123')
       .expect(500);
@@ -36,6 +38,7 @@ describe('GET /reviews', () => {
       .get('/reviews')
       .expect('Content-Type', /json/)
       .expect(200);
+
     expect(Array.isArray(res.body)).toBe(true);
   });
 });
@@ -43,6 +46,7 @@ describe('GET /reviews', () => {
 describe('GET /reviews/:id', () => {
   it('should return 404 for a non-existent review ID', async () => {
     const fakeId = '507f1f77bcf86cd799439011';
+
     await request(app)
       .get(`/reviews/${fakeId}`)
       .expect(404);
@@ -55,24 +59,25 @@ describe('GET /reviews/:id', () => {
   });
 });
 
-// ==================== USERS (protected routes) ====================
+// ==================== USERS ====================
 describe('GET /users', () => {
-  it('should return 401 Unauthorized because routes are protected', async () => {
+  it('should return 404 because route does not exist', async () => {
     await request(app)
       .get('/users')
-      .expect(401);
+      .expect(404);
   });
 });
 
-describe('GET /users/:id', () => {
-  it('should return 401 Unauthorized for any ID (protected)', async () => {
+describe('GET /users/:userId', () => {
+  it('should return 401 Unauthorized for protected route', async () => {
     const fakeId = '507f1f77bcf86cd799439011';
+
     await request(app)
       .get(`/users/${fakeId}`)
       .expect(401);
   });
 
-  it('should return 401 even for invalid ID format (protected)', async () => {
+  it('should return 401 for invalid ID because auth runs first', async () => {
     await request(app)
       .get('/users/123')
       .expect(401);
@@ -86,6 +91,7 @@ describe('GET /cuisines', () => {
       .get('/cuisines')
       .expect('Content-Type', /json/)
       .expect(200);
+
     expect(Array.isArray(res.body)).toBe(true);
   });
 });
@@ -93,6 +99,7 @@ describe('GET /cuisines', () => {
 describe('GET /cuisines/:id', () => {
   it('should return 404 for a non-existent cuisine ID', async () => {
     const fakeId = '507f1f77bcf86cd799439011';
+
     await request(app)
       .get(`/cuisines/${fakeId}`)
       .expect(404);
